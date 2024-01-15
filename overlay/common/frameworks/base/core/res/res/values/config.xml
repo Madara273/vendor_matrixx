@@ -484,4 +484,7 @@
     <string name="config_headlineFontFamily">google-sans-flex</string>
     <string name="config_headlineFontFamilyMedium">google-sans-flex-medium</string>
     <string name="config_headlineFontFeatureSettings">ss03</string>
+
+    <!-- Maximum velocity to initiate a fling, as measured in dips per second. -->
+    <dimen name="config_viewMaxFlingVelocity">12000dp</dimen>
 </resources>
