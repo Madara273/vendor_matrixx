@@ -319,6 +319,9 @@ $(call inherit-product, vendor/pixel/themepicker/products/themepicker.mk)
 ifeq ($(TARGET_INCLUDE_PIXEL_LAUNCHER),true)
 $(call inherit-product, vendor/pixel/launcher/products/launcher.mk)
 endif
+
+# Don't dexpreopt prebuilts. (For GMS).
+DONT_DEXPREOPT_PREBUILTS := true
 endif
 
 # Custom Overlays
