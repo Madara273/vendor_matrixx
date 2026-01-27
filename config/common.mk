@@ -311,3 +311,11 @@ endif
 # Custom Overlays
 PRODUCT_PACKAGES += \
     PixelLauncherOverlayCustom
+
+ifeq ($(WITH_GMS),true)
+PRODUCT_PACKAGES += \
+    SettingsOverlayPixelThemePicker
+else
+PRODUCT_PACKAGES += \
+    SettingsOverlay
+endif
