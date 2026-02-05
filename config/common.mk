@@ -307,3 +307,7 @@ include vendor/lineage/config/version.mk
 ifeq ($(WITH_GMS), true)
 $(call inherit-product, vendor/gms/products/gms.mk)
 endif
+
+# Custom Overlays
+PRODUCT_PACKAGES += \
+    PixelLauncherOverlayCustom
