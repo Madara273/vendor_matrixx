@@ -192,7 +192,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.battery_bypass_supported=$(BYPASS_CHARGE_SUPPORTED) \
     persist.sys.hbmservice_file=$(HBM_NODE)
 
-
 # PIF values
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.pihooks_MANUFACTURER?=Google \
@@ -208,3 +207,22 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PihooksGmsFp="google/komodo_beta/komodo:16/CP11.251209.007.A1/14691868:user/release-keys" \
     PihooksGmsModel="Pixel 9 Pro XL"
+
+# Quick Switch
+TARGET_DEFAULT_PIXEL_LAUNCHER ?= false
+ifeq ($(WITH_GMS),true)
+ifeq ($(TARGET_DEFAULT_PIXEL_LAUNCHER), true)
+# Pixel Launcher
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.default_launcher=1 \
+    persist.sys.quickswitch_pixel_shipped=1
+else
+# Launcher3
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.default_launcher=0 \
+    persist.sys.quickswitch_pixel_shipped=1
+endif
+else
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.default_launcher=0
+endif
