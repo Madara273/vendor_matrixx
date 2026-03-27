@@ -12,11 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/google/atv/products/aosp_tv_x86.mk)
+$(call inherit-product, device/google/atv/products/aosp_tv_x86_64.mk)
 
-include vendor/lineage/build/target/product/lineage_generic_tv_target.mk
+include vendor/matrixx/build/target/product/lineage_generic_tv_target.mk
 
-PRODUCT_NAME := lineage_gsi_tv_x86
+TARGET_SUPPORTS_64_BIT_APPS := true
+
+PRODUCT_NAME := lineage_gsi_tv_x86_64
 
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS :=
 
