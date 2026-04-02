@@ -305,7 +305,19 @@ include vendor/matrixx/config/version.mk
 
 # GMS
 ifeq ($(WITH_GMS), true)
-$(call inherit-product, vendor/gms/products/gms.mk)
+# Pixel Sounds
+$(call inherit-product, vendor/pixel/sounds/products/sounds.mk)
+
+# Pixel GMS
+$(call inherit-product, vendor/pixel/gms/products/gms.mk)
+
+# Pixel ThemePicker
+$(call inherit-product, vendor/pixel/themepicker/products/themepicker.mk)
+
+# Pixel Launcher
+ifeq ($(TARGET_INCLUDE_PIXEL_LAUNCHER),true)
+$(call inherit-product, vendor/pixel/launcher/products/launcher.mk)
+endif
 endif
 
 # Custom Overlays
