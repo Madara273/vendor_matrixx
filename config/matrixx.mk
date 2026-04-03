@@ -211,19 +211,21 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 TARGET_DEFAULT_PIXEL_LAUNCHER ?= false
 ifeq ($(WITH_GMS),true)
 ifeq ($(TARGET_DEFAULT_PIXEL_LAUNCHER), true)
-# Pixel Launcher
+# Pixel Launcher build
 PRODUCT_SYSTEM_PROPERTIES += \
     persist.sys.default_launcher=1 \
     persist.sys.quickswitch_pixel_shipped=1
 else
-# Launcher3
+# Launcher3 only
 PRODUCT_SYSTEM_PROPERTIES += \
     persist.sys.default_launcher=0 \
-    persist.sys.quickswitch_pixel_shipped=1
+    persist.sys.quickswitch_pixel_shipped=0
 endif
 else
+# No GMS 
 PRODUCT_SYSTEM_PROPERTIES += \
-    persist.sys.default_launcher=0
+    persist.sys.default_launcher=0 \
+    persist.sys.quickswitch_pixel_shipped=0
 endif
 
 PERF_ANIM_OVERRIDE ?= false
