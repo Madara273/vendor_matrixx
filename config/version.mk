@@ -29,4 +29,5 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.matrixx.release.type=$(MATRIXX_BUILD_TYPE) \
     ro.matrixx.release.code=$(MATRIXX_RELEASE_CODE) \
     ro.matrixx.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
-    ro.modversion=$(MATRIXX_VERSION)
+    ro.modversion=$(MATRIXX_VERSION) \
+    ro.matrixx.maintainer=$(MATRIXX_MAINTAINER)
