@@ -4,7 +4,7 @@ PRODUCT_VERSION_MINOR = 0
 # Increase Matrixx Version with each major release.
 MATRIXX_VERSION := 12.2.0
 
-MATRIXX_RELEASE_CODE := Protium
+MATRIXX_CODENAME := Aurora
 
 MATRIXX_BUILD_TYPE := $(shell vendor/matrixx/build/verifykeys.sh $(DEFAULT_SYSTEM_DEV_CERTIFICATE))
 
@@ -15,10 +15,10 @@ else
 endif
 
 # Internal version
-MATRIXX_VERSION := Matrixx$(MATRIXX_VARIANT)-v$(MATRIXX_VERSION)-$(MATRIXX_BUILD_TYPE)-$(MATRIXX_BUILD)-$(MATRIXX_BUILD_VARIANT)-$(shell date +%Y%m%d-%H%M)
+MATRIXX_VERSION := Matrixx-v$(MATRIXX_VERSION)-$(MATRIXX_CODENAME)-$(MATRIXX_BUILD_TYPE)-$(MATRIXX_BUILD)-$(MATRIXX_BUILD_VARIANT)-$(shell date +%Y%m%d-%H%M)
 
 # Display version
-MATRIXX_DISPLAY_VERSION := Matrixx-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(MATRIXX_BUILD)-v$(MATRIXX_VERSION)
+MATRIXX_DISPLAY_VERSION := Matrixx-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(MATRIXX_BUILD)-v$(MATRIXX_VERSION)-$(MATRIXX_CODENAME)
 
 # Matrixx version properties
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -30,4 +30,5 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.matrixx.release.code=$(MATRIXX_RELEASE_CODE) \
     ro.matrixx.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.modversion=$(MATRIXX_VERSION) \
+    ro.matrixx.codename=$(MATRIXX_CODENAME) \
     ro.matrixx.maintainer=$(MATRIXX_MAINTAINER)
