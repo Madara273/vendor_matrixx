@@ -2,7 +2,7 @@ PRODUCT_VERSION_MAJOR = 16
 PRODUCT_VERSION_MINOR = 0
 
 # Increase Matrixx Version with each major release.
-MATRIXX_VERSION := 12.2.0
+MATRIXX_VERSION := 12.2
 
 MATRIXX_CODENAME := Aurora
 
