@@ -3,19 +3,10 @@
 # Copyright (C) 2024-25 Matrixx Android Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 #
 
 #$1=TARGET_DEVICE, $2=PRODUCT_OUT, $3=MATRIXX_VERSION
+
 existingOTAjson="./vendor/MatrixxOTA/$1.json"
 output="./vendor/MatrixxOTA/$1.json"
 
@@ -31,19 +22,13 @@ if [ -f "$existingOTAjson" ]; then
     device=$(grep -m 1 '"device"' "$existingOTAjson" | cut -d ':' -f2- | sed 's/"//g' | sed 's/,//g' | xargs)
     support_group=$(grep -m 1 '"support_group"' "$existingOTAjson" | sed 's/.*"support_group"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')
     device_name=$(grep -m 1 '"device_name"' "$existingOTAjson" | cut -d ':' -f2- | sed 's/"//g' | sed 's/,//g' | xargs)
-
 else
-    # Fetch Basic details from build.prop if JSON doesn't exist
+    # Fetch basic details from build.prop if JSON doesn't exist
     oem=$(grep "ro.product.system.manufacturer" "$buildprop" | cut -d'=' -f2 | xargs)
     device=$(basename "$2")
 fi
 
 filename=$3
-download="https://sourceforge.net/projects/projectmatrixx/files/Android-16/$1/$filename/download"
-linenr=$(grep -n "ro.system.build.date.utc" "$buildprop" | cut -d':' -f1)
-timestamp=$(sed -n "$linenr"p < "$buildprop" | cut -d'=' -f2)
-md5=$(md5sum "$2/$3" | cut -d' ' -f1)
-size=$(stat -c "%s" "$2/$3")
 
 # Get version
 VERSION=$(echo "$3" | cut -d'-' -f2 | sed 's/v//')
@@ -54,29 +39,39 @@ else
   VERSION="$V_MAX.$V_MIN.$V_PATCH"
 fi
 
+# New download URL (fixed 12.x path)
+download="https://get.projectmatrixx.org/folder/$1/12.x/${VERSION}/$filename"
+
+linenr=$(grep -n "ro.system.build.date.utc" "$buildprop" | cut -d':' -f1)
+timestamp=$(sed -n "$linenr"p < "$buildprop" | cut -d'=' -f2)
+md5=$(md5sum "$2/$3" | cut -d' ' -f1)
+size=$(stat -c "%s" "$2/$3")
+
 # Cleanup old file
 if [ -f "$output" ]; then
     rm "$output"
 fi
 
 # Create JSON output
-echo '{
+cat <<EOF >> "$output"
+{
   "response": [
     {
-        "maintainer": "'$maintainer'",
-        "support_group":"'$support_group'",
-        "oem": "'$oem'",
-        "device": "'$device'",
-        "device_name": "'$device_name'",
-        "filename": "'$filename'",
-        "download": "'$download'",
-        "timestamp": '$timestamp',
-        "md5": "'$md5'",
-        "size": '$size',
-        "version": "'$VERSION'"
+        "maintainer": "$maintainer",
+        "support_group": "$support_group",
+        "oem": "$oem",
+        "device": "$device",
+        "device_name": "$device_name",
+        "filename": "$filename",
+        "download": "$download",
+        "timestamp": $timestamp,
+        "md5": "$md5",
+        "size": $size,
+        "version": "$VERSION"
     }
   ]
-}' >> "$output"
+}
+EOF
 
 echo "vendor/MatrixxOTA/$1.json"
 
