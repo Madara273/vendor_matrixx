@@ -1,3 +1,7 @@
+# QuickSwitch flags
+TARGET_INCLUDE_PIXEL_LAUNCHER ?= false
+TARGET_DEFAULT_PIXEL_LAUNCHER ?= false
+
 # Additional props
 PRODUCT_PRODUCT_PROPERTIES += \
     dalvik.vm.debug.alloc=0 \
@@ -208,24 +212,28 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PihooksGmsModel="Pixel 10 Pro"
 
 # Quick Switch
-TARGET_DEFAULT_PIXEL_LAUNCHER ?= false
-ifeq ($(WITH_GMS),true)
-ifeq ($(TARGET_DEFAULT_PIXEL_LAUNCHER), true)
-# Pixel Launcher build
+ifeq ($(TARGET_INCLUDE_PIXEL_LAUNCHER),true)
+PRODUCT_PACKAGES += \
+    LauncherPixelOverlay
+
 PRODUCT_SYSTEM_PROPERTIES += \
-    persist.sys.default_launcher=1 \
-    persist.sys.quickswitch_pixel_shipped=1
+    ro.matrixx.pixel_launcher=true
 else
-# Launcher3 only
+
 PRODUCT_SYSTEM_PROPERTIES += \
-    persist.sys.default_launcher=0 \
-    persist.sys.quickswitch_pixel_shipped=0
+    ro.matrixx.pixel_launcher=false
 endif
-else
-# No GMS 
+
+# ---------------------------------------
+# Default Launcher Selection
+# ---------------------------------------
+ifeq ($(TARGET_DEFAULT_PIXEL_LAUNCHER),true)
 PRODUCT_SYSTEM_PROPERTIES += \
-    persist.sys.default_launcher=0 \
-    persist.sys.quickswitch_pixel_shipped=0
+    persist.sys.default_launcher=1
+else
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.default_launcher=0
 endif
 
 PERF_ANIM_OVERRIDE ?= false
