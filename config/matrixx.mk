@@ -250,3 +250,6 @@ ifeq ($(SURFACE_FLINGER_BOOST),true)
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.uclamp.min=180
 endif
+
+# Themed Icons
+$(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
