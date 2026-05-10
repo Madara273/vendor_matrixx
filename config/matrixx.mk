@@ -144,7 +144,8 @@ PRODUCT_PACKAGES += \
     LMOFreeformSidebar \
     OmniJaws \
     OmniStyle \
-    MatrixxWalls
+    MatrixxWalls \
+    AxQuickLook
 
 ifneq ($(TARGET_DISABLE_MATLOG),true)
 PRODUCT_PACKAGES += \
