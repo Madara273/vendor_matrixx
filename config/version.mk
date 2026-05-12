@@ -31,4 +31,5 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.matrixx.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.modversion=$(MATRIXX_VERSION) \
     ro.matrixx.codename=$(MATRIXX_CODENAME) \
-    ro.matrixx.maintainer=$(MATRIXX_MAINTAINER)
+    ro.matrixx.maintainer=$(MATRIXX_MAINTAINER) \
+    ro.matrixx.processor=$(MATRIXX_PROCESSOR)
