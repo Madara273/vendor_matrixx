@@ -145,6 +145,7 @@ PRODUCT_PACKAGES += \
     OmniJaws \
     OmniStyle \
     MatrixxWalls \
+    AxSandbox \
     AxQuickLook
 
 ifneq ($(TARGET_DISABLE_MATLOG),true)
