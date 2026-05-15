@@ -2,9 +2,9 @@ PRODUCT_VERSION_MAJOR = 16
 PRODUCT_VERSION_MINOR = 0
 
 # Increase Matrixx Version with each major release.
-MATRIXX_BASE_VERSION := 12.2
+MATRIXX_BASE_VERSION := 12.3
 
-MATRIXX_CODENAME := Aurora
+MATRIXX_CODENAME := Binary
 
 MATRIXX_BUILD_TYPE := $(shell vendor/matrixx/build/verifykeys.sh $(DEFAULT_SYSTEM_DEV_CERTIFICATE))
 
