@@ -155,7 +155,7 @@ PRODUCT_PACKAGES += \
     AxSandbox \
     AxQuickLook
 
-ifneq ($(TARGET_DISABLE_MATLOG),true)
+ifeq ($(TARGET_INCLUDE_MATLOG),true)
 PRODUCT_PACKAGES += \
     MatLog
 endif
