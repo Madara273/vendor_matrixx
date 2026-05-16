@@ -40,7 +40,7 @@ else
 fi
 
 # New download URL (fixed 12.x path)
-download="https://get.projectmatrixx.org/folder/$1/12.x/${VERSION}/$filename"
+download="https://get.projectmatrixx.com/folder/$1/12.x/${VERSION}/$filename"
 
 linenr=$(grep -n "ro.system.build.date.utc" "$buildprop" | cut -d':' -f1)
 timestamp=$(sed -n "$linenr"p < "$buildprop" | cut -d'=' -f2)
