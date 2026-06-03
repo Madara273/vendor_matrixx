@@ -153,6 +153,7 @@ PRODUCT_PACKAGES += \
     OmniStyle \
     MatrixxWalls \
     AxSandbox \
+    AxThemeStore \
     AxQuickLook
 
 ifeq ($(TARGET_INCLUDE_MATLOG),true)
