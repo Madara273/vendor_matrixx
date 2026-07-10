@@ -47,7 +47,7 @@ except:
     device = product
 
 if not depsonly:
-    print("Device %s not found. Attempting to retrieve device repository from Matrixx-Devices Github (http://github.com/Matrixx-Devices)." % device)
+    print("Device %s not found. Attempting to retrieve device repository from Matrixx-Devices-Hub Github (http://github.com/Matrixx-Devices-Hub)." % device)
 
 repositories = []
 
@@ -67,7 +67,8 @@ def add_auth(githubreq):
         githubreq.add_header("Authorization","Basic %s" % githubauth)
 
 if not depsonly:
-    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:Matrixx-Devices+in:name+fork:true" % device)
+    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:Madara273+in:name+fork:true" % device)
+
     add_auth(githubreq)
     try:
         result = json.loads(urllib.request.urlopen(githubreq, timeout=10).read().decode())
@@ -209,7 +210,7 @@ def add_to_manifest(repositories):
             "remote": repo_remote,
         }
 
-        if repo_revision and not (repo_remote == "evo-devices" and repo_revision == get_default_or_fallback_revision(repo_name)):
+        if repo_revision and not (repo_remote == "matrixx-devices" and repo_revision == get_default_or_fallback_revision(repo_name)):
             project_attrib["revision"] = repo_revision
 
         project = ElementTree.Element("project", attrib=project_attrib)
@@ -336,4 +337,4 @@ else:
             print("Done")
             sys.exit()
 
-print("Repository for %s not found in the Matrixx-Devices Github repository list. If this is an error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
+print("Repository for %s not found in the Matrixx-Devices-Hub Github repository list. If this is an error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
