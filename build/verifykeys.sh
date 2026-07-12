@@ -11,7 +11,7 @@ if [ -z "$KEYTOOL_PATH" ]; then
     done
 fi
 
-OFFICIAL_FINGERPRINT="8E:61:50:2A:4E:14:FC:4B:16:5A:CE:5A:1B:B5:DD:7E:45:D7:5B:DF:08:5F:E2:7C:66:56:5A:8C:EF:27:7A:F1"
+OFFICIAL_FINGERPRINT="9D:D0:3D:84:36:1E:FA:E3:28:5D:96:34:CA:85:61:8E:76:5D:59:A6:3E:6D:A3:9E:49:26:B3:61:3B:1A:C6:B6"
 
 BUILD_FINGERPRINT="vendor/matrixx-priv/keys/releasekey.x509.pem"
 
@@ -20,7 +20,7 @@ CERT_FINGERPRINT=$("$KEYTOOL_PATH" -printcert -file "$BUILD_FINGERPRINT" \
     | awk -F': ' '{print $2}')
 
 if [ "$CERT_FINGERPRINT" = "$OFFICIAL_FINGERPRINT" ]; then
-    echo "OFFICIAL"
+    echo "ALTERNATIVE"
 else
     echo "UNOFFICIAL"
 fi
