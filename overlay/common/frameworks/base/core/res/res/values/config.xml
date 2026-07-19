@@ -486,4 +486,6 @@
 
     <!-- Maximum velocity to initiate a fling, as measured in dips per second. -->
     <dimen name="config_viewMaxFlingVelocity">12000dp</dimen>
+
+    <item name="config_wallpaperMaxScale" format="float" type="dimen">1.20</item>
 </resources>
