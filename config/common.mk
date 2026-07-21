@@ -323,6 +323,12 @@ include vendor/matrixx/config/version.mk
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 -include vendor/matrixx/config/partner_gms.mk
 
+# Vulcan Deps
+USE_DEFAULT_VULKAN ?= true
+ifeq ($(USE_DEFAULT_VULKAN), true)
+    $(call inherit-product-if-exists, vendor/lineage/config/vulkan.mk)
+endif
+
 # GMS
 ifeq ($(WITH_GMS), true)
 # Pixel Sounds
