@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (C) 2024-25 Matrixx Android Project
+# Copyright (C) 2026 Matrixx Android Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 #
@@ -47,6 +47,10 @@ timestamp=$(sed -n "$linenr"p < "$buildprop" | cut -d'=' -f2)
 md5=$(md5sum "$2/$3" | cut -d' ' -f1)
 size=$(stat -c "%s" "$2/$3")
 
+# Security patch & SDK level
+OS_PATCH_LEVEL=$(grep -m1 "^ro.build.version.security_patch=" "$buildprop" | cut -d'=' -f2)
+OS_SDK_LEVEL=$(grep -m1 "^ro.build.version.sdk=" "$buildprop" | cut -d'=' -f2)
+
 # Cleanup old file
 if [ -f "$output" ]; then
     rm "$output"
@@ -68,6 +72,8 @@ cat <<EOF >> "$output"
         "md5": "$md5",
         "size": $size,
         "version": "$VERSION"
+        "os_patch_level": "${OS_PATCH_LEVEL:-}",
+        "os_sdk_level": ${OS_SDK_LEVEL:-0}
     }
   ]
 }
